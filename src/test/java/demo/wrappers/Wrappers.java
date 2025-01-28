@@ -17,13 +17,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.NoSuchElementException;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Wrappers {
-    
-    private static final Logger logger = Logger.getLogger(Wrappers.class.getName());
-
 
     // Method to search for text in a search box
     public static void Search_text(WebDriver driver, By element, String text) {
@@ -38,9 +33,10 @@ public class Wrappers {
             }
             searchBox.sendKeys(text);
             searchBox.sendKeys(Keys.ENTER);
-            logger.info("Search performed with text: " + text);
+            System.out.println("Search performed with text: " + text);
+  
         } catch (Exception e) {
-            logger.log(Level.SEVERE, "An error occurred while searching: " + e.getMessage(), e);
+            System.out.println("An error occurred while searching: "+ e.getMessage());
         }
     }
 
@@ -50,16 +46,16 @@ public class Wrappers {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Ensure wait is initialized
             wait.until(ExpectedConditions.elementToBeClickable(element));
             element.click();
-            logger.info("Clicked on the element successfully.");
+            System.out.println("Clicked on the element successfully.");
         } catch (NoSuchElementException e) {
-            logger.log(Level.SEVERE, "Element not found: " + e.getMessage(), e);
+            System.out.println("Element not found: " + e.getMessage());
         } catch (StaleElementReferenceException e) {
-            logger.log(Level.SEVERE, "Element is stale: " + e.getMessage(), e);
+            System.out.println("Element is stale: " + e.getMessage());
         } catch (Exception e) {
-            logger.log(Level.SEVERE, "An error occurred while clicking the element: " + e.getMessage(), e);
+            System.out.println("An error occurred while clicking the element: " + e.getMessage());
         }
     } else {
-        logger.warning("The WebElement is null. Cannot perform click action.");
+        System.out.println("The WebElement is null. Cannot perform click action.");
     }
 }
 
@@ -72,13 +68,13 @@ public class Wrappers {
                 int percentage = Integer.parseInt(discount.getText().replaceAll("\\D", ""));
                 if (percentage > 17) {
                     String title = locator.findElement(By.xpath("//div[@class='KzDlHZ']")).getText();
-                    logger.info("The title is: " + title + " and discount percent is: " + percentage + "%");
+                    System.out.println("The title is: " + title + " and discount percent is: " + percentage + "%");
                 }
             }
         } catch (NumberFormatException e) {
-            logger.log(Level.SEVERE, "Failed to parse discount value: " + e.getMessage(), e);
+            System.out.println("Failed to parse discount value: " + e.getMessage());
         } catch (Exception e) {
-            logger.log(Level.SEVERE, "An error occurred while processing discounted iPhones: " + e.getMessage(), e);
+            System.out.println("An error occurred while processing discounted iPhones: " + e.getMessage());
         }
     }
 // Method to display the top-rated coffee mugs based on rating
@@ -116,10 +112,11 @@ public static void Top_Coffemugs(WebDriver driver,By locator) {
             String productImage = imageElement.getAttribute("src");
 
             // Log the title and image
-            logger.info((i + 1) + ". The title is " + title + " and image URL is " + productImage);
+            System.out.println((i + 1) + ". The title is " + title + " and image URL is " + productImage);
         }
     } catch (Exception e) {
-        logger.log(Level.SEVERE, "An error occurred while processing top coffee mugs: " + e.getMessage(), e);
+       
+        System.out.println("An error occurred while processing top coffee mugs: " + e.getMessage());
     }
 }
 
