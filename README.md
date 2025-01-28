@@ -1,0 +1,1 @@
+This package contains automated test cases using Selenium WebDriver for testing various functionalities on Flipkart's website. It integrates with the Wrappers utility class to simplify operations such as searching, filtering, and extracting data from web pages.
